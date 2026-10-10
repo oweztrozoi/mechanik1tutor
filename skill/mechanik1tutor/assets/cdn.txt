@@ -1,0 +1,1 @@
+https://cdn.jsdelivr.net/gh/oweztrozoi/mechanik1tutor@main/skill/mechanik1tutor/assets/dist/m1t-chat.js

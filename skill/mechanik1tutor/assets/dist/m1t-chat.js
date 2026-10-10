@@ -1,0 +1,261 @@
+/* Mechanik1Tutor – Chat-Engine (CDN). KI-generiert (Claude, Anthropic), kein offizielles Lehrmaterial. Baut Stil und Gerüst in <div id="m1t"> und startet, sobald der Inhalt geladen ist. */
+(function(){var r=document.getElementById("m1t")||document.body.appendChild(document.createElement("div"));var h=document.head||document.body,st=document.createElement("style");st.textContent=":root{\n--bg:#f7f7f4; --card:#ffffff; --ink:#1d1d1b; --muted:#6b6b66; --line:#d9d8d2;\n--struct:#3a3a36; --hatch:#8a8a84; --hl:#fff3bf; --accent:#2f6fdf;\n--cA:#2f6fdf; --cB:#e8710a; --cC:#1e9e5a; --cD:#d93636; --cE:#8b5cf6; --cF:#0e9fb3;\n}\n@media (prefers-color-scheme: dark){\n:root:not([data-mode=\"light\"]){\n--bg:#171716; --card:#22221f; --ink:#ecebe6; --muted:#a3a29b; --line:#3b3a36;\n--struct:#d6d5cf; --hatch:#8f8e88; --hl:#4a4215; --accent:#6d9cf5;\n--cA:#6d9cf5; --cB:#f59a4a; --cC:#4cc98a; --cD:#f26b6b; --cE:#b29bfb; --cF:#3fc5d8;\n}\n}\n:root[data-mode=\"dark\"]{\n--bg:#171716; --card:#22221f; --ink:#ecebe6; --muted:#a3a29b; --line:#3b3a36;\n--struct:#d6d5cf; --hatch:#8f8e88; --hl:#4a4215; --accent:#6d9cf5;\n--cA:#6d9cf5; --cB:#f59a4a; --cC:#4cc98a; --cD:#f26b6b; --cE:#b29bfb; --cF:#3fc5d8;\n}\n*{box-sizing:border-box}\n.wrap{max-width:1100px;margin:0 auto;padding:16px}\nheader h1{font-size:1.35rem;margin:0 0 2px}\nheader p{margin:0;color:var(--muted)}\n.tag{display:inline-block;font-size:.75rem;padding:1px 8px;border-radius:99px;border:1px solid var(--line);color:var(--muted);margin-right:6px}\n.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:14px;margin-top:12px}\n@media (max-width:820px){.grid{grid-template-columns:minmax(0,1fr)}}\n.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}\nsvg#stage{width:100%;height:auto;display:block;touch-action:manipulation}\n.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:.85rem;color:var(--muted)}\n.legend span::before{content:\"\";display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--c);margin-right:6px;vertical-align:-1px}\n.stephead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}\n.stephead h2{font-size:1.05rem;margin:0}\n.count{color:var(--muted);font-size:.85rem;white-space:nowrap}\n#text{margin:8px 0}\n#formula{background:var(--bg);border-radius:8px;padding:10px 12px;overflow-x:auto;min-height:2.4em}\n#formula:empty{display:none}\n.ask{border-left:3px solid var(--accent);padding:6px 10px;margin:10px 0;background:color-mix(in srgb,var(--accent) 8%,transparent);border-radius:0 8px 8px 0}\n.ask b{display:block;font-size:.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:.04em}\nbutton.primary{background:var(--accent);border-color:var(--accent);color:#fff}\nbutton:disabled{opacity:.4;cursor:default}\n.controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}\n.dots{display:flex;flex-wrap:wrap;gap:5px;margin-left:auto}\n.dots i{width:10px;height:10px;border-radius:50%;background:var(--line);cursor:pointer}\n.dots i.done{background:color-mix(in srgb,var(--accent) 45%,var(--line))}\n.dots i.now{background:var(--accent)}\n.praxis{margin-top:14px}\n.praxis h3{margin:0 0 4px;font-size:1rem}\n.praxis .k{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}\n.hidden{display:none!important}\n.el{transition:opacity .45s ease}\n.el.off{opacity:0;pointer-events:none}\n.el.on{opacity:1}\n.el.dim{opacity:.28}\n.draw path.stroke,.draw line.stroke{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw .7s ease forwards}\n@keyframes draw{to{stroke-dashoffset:0}}\n.pulse{animation:pulse 1.1s ease-in-out 2}\n@keyframes pulse{50%{filter:drop-shadow(0 0 6px var(--hl)) drop-shadow(0 0 2px var(--hl))}}\n.hlbox{fill:var(--hl);opacity:.0;transition:opacity .3s}\n.el.hl .hlbox{opacity:.9}\nsvg text{font-family:\"Cambria Math\",\"STIX Two Math\",\"Times New Roman\",serif;font-style:italic}\nsvg text.up{font-style:normal;font-family:system-ui,sans-serif}\n.hint{font-size:.8rem;color:var(--muted);margin-top:4px}\nsvg#stage.dreh{cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}\nsvg#stage.dreh:active{cursor:grabbing}\n.vc{cursor:pointer}\n.vc-f{fill:var(--card);stroke:var(--muted);stroke-width:1;fill-opacity:.92}\n.vc-f:hover{fill:var(--hl)}\n.vc-t{font:500 10px system-ui,sans-serif;fill:var(--ink);pointer-events:none;font-style:normal}\n.vc-c{fill:var(--muted);fill-opacity:.35}\n.vc-c:hover{fill:var(--accent);fill-opacity:1}\n.vc-h{font:11px system-ui,sans-serif;fill:var(--muted);font-style:normal}\n.vc-h:hover{fill:var(--accent)}\n:root:root:root{--bg:var(--surface-1);--card:var(--surface-2);--ink:var(--text-primary);--muted:var(--text-secondary);--line:var(--border-strong);--struct:var(--text-primary);--hatch:var(--text-secondary);--accent:var(--text-accent)}.wrap{padding:0}h1,h2,h3{font-weight:500}.card{border-width:.5px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}";h.appendChild(st);var l=document.createElement("link");l.rel="stylesheet";l.href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css";h.appendChild(l);r.innerHTML="<h2 class=\"sr-only\">Schritt-f\u00fcr-Schritt-Animation zu Mechanik 1</h2><div class=\"wrap\">\n<div class=\"grid\">\n<div class=\"card\">\n<svg id=\"stage\" viewBox=\"0 0 600 380\" role=\"img\" aria-label=\"Skizze\"></svg>\n<div class=\"legend\" id=\"legend\"></div>\n<div class=\"hint hidden\" id=\"hint\">Skizze mit Maus oder Finger ziehen, um sie zu drehen.</div>\n</div>\n<div class=\"card\">\n<div class=\"stephead\"><h2 id=\"stitle\"></h2><span class=\"count\" id=\"count\"></span></div>\n<div id=\"text\"></div>\n<div class=\"ask hidden\" id=\"ask\"><b>Probier's zuerst selbst</b><span id=\"asktext\"></span></div>\n<button id=\"reveal\" class=\"hidden\">L\u00f6sung zeigen</button>\n<div id=\"formula\"></div>\n<div class=\"controls\">\n<button id=\"first\" title=\"Zum Anfang\">Anfang</button>\n<button id=\"prev\" title=\"Zur\u00fcck (\u2190)\">Zur\u00fcck</button>\n<button id=\"next\" class=\"primary\" title=\"Weiter (\u2192)\">Weiter</button>\n<button id=\"play\" title=\"Automatisch abspielen (Leertaste)\">Abspielen</button>\n<div class=\"dots\" id=\"dots\"></div>\n</div>\n</div>\n</div>\n<div class=\"card praxis hidden\" id=\"praxis\">\n<div class=\"k\">Praxisbeispiel</div>\n<h3 id=\"ptitle\"></h3>\n<div id=\"ptext\"></div>\n</div>\n</div>";})();
+const NS="http://www.w3.org/2000/svg", svg=document.getElementById("stage"), ELS=[], UPD=[], KM={};
+let BUILD={from:0,to:Infinity};
+const $=id=>document.getElementById(id);
+const col=c=>c?(c.length===1?`var(--c${c})`:c):"var(--struct)";
+const fmt=(v,d=1)=>(Math.abs(v)<1e-9?0:v).toFixed(d).replace(".",",").replace(/^-/,"−");
+const rad=d=>d*Math.PI/180;
+const tx=(v,d=1)=>fmt(v,d).replace(",","{,}").replace("−","-");
+let NODRAW=false,VIEW3D=null;
+function mk(tag,a={},p){const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(a))if(v!==undefined&&v!==null)n.setAttribute(k,v);(p||svg).appendChild(n);return n;}
+function group(id){const g=mk("g",{class:"el off"});ELS.push({node:g,from:BUILD.from,to:BUILD.to,id:id||null});return g;}
+function G(o){return o.parent||group(o.id);}
+function at(from,to=Infinity){BUILD={from,to};}
+function viewbox(w,h){svg.setAttribute("viewBox",`0 0 ${w} ${h}`);}
+function label(x,y,txt,c,o={}){const g=G(o);
+const t=mk("text",{x,y,fill:col(c),"font-size":o.size||17,"text-anchor":o.anchor||"middle","dominant-baseline":"middle",class:o.upright?"up":null,"font-weight":o.bold?"500":null},g);
+const re=/([_^])(\{[^}]*\}|.)/g;let last=0,m;
+const add=(s,sh)=>{if(!s)return;const ts=mk("tspan",sh?{"baseline-shift":sh,"font-size":"72%"}:{},t);ts.textContent=s;};
+while((m=re.exec(txt))){add(txt.slice(last,m.index));add(m[2].replace(/[{}]/g,""),m[1]==="_"?"sub":"super");last=re.lastIndex;}
+add(txt.slice(last));
+if(o.halo!==false){t.setAttribute("paint-order","stroke");t.setAttribute("stroke","var(--card)");t.setAttribute("stroke-width","4");t.setAttribute("stroke-linejoin","round");}
+return g;}
+const text=(x,y,s,o={})=>label(x,y,s,o.c||"var(--muted)",{upright:true,size:14,...o});
+function drawable(n,len){if(NODRAW)return n;n.setAttribute("class","stroke");n.style.setProperty("--len",len);return n;}
+function line(x1,y1,x2,y2,o={}){const g=G(o);
+const l=mk("line",{x1,y1,x2,y2,stroke:col(o.c),"stroke-width":o.w||2,"stroke-dasharray":o.dash?"7 5":null,"stroke-linecap":"round"},g);
+if(!o.dash)drawable(l,Math.hypot(x2-x1,y2-y1));return g;}
+function arrow(x1,y1,x2,y2,c,txt,o={}){const g=G(o);
+const w=o.w||3,a=Math.atan2(y2-y1,x2-x1),h=o.head||13,bx=x2-h*Math.cos(a),by=y2-h*Math.sin(a),s=h*.5;
+drawable(mk("path",{d:`M${x1},${y1} L${bx},${by}`,stroke:col(c),"stroke-width":w,fill:"none","stroke-linecap":"round"},g),Math.hypot(bx-x1,by-y1));
+const tip=(X,Y,BX,BY)=>mk("path",{d:`M${X},${Y} L${BX+s*Math.sin(a)},${BY-s*Math.cos(a)} L${BX-s*Math.sin(a)},${BY+s*Math.cos(a)} Z`,fill:col(c)},g);
+tip(x2,y2,bx,by);
+if(o.double)tip(bx,by,bx-h*.9*Math.cos(a),by-h*.9*Math.sin(a));
+if(txt){const lp=o.lpos??.5,off=o.loff??16,mx=x1+(x2-x1)*lp,my=y1+(y2-y1)*lp;label(mx-off*Math.sin(a),my+off*Math.cos(a),txt,c,{parent:g});}
+return g;}
+function force(x,y,deg,len,c,txt,o={}){const dx=Math.cos(rad(deg))*len,dy=-Math.sin(rad(deg))*len;
+return o.mode==="tail"?arrow(x,y,x+dx,y+dy,c,txt,o):arrow(x-dx,y-dy,x,y,c,txt,o);}
+function moment(cx,cy,r,ccw,c,txt,o={}){const g=G(o);
+const a0=rad(o.start??200),sp=rad(o.span??250),a1=ccw?a0-sp:a0+sp,P=a=>[cx+r*Math.cos(a),cy+r*Math.sin(a)];
+const[sx,sy]=P(a0),[ex,ey]=P(a1);
+drawable(mk("path",{d:`M${sx},${sy} A${r},${r} 0 ${sp>Math.PI?1:0} ${ccw?0:1} ${ex},${ey}`,stroke:col(c),"stroke-width":o.w||3,fill:"none"},g),r*sp);
+const t=ccw?a1-Math.PI/2:a1+Math.PI/2,h=12,s=6,tx=Math.cos(t),ty=Math.sin(t);
+mk("path",{d:`M${ex+tx*h*.6},${ey+ty*h*.6} L${ex-tx*h*.6-ty*s},${ey-ty*h*.6+tx*s} L${ex-tx*h*.6+ty*s},${ey-ty*h*.6-tx*s} Z`,fill:col(c)},g);
+if(txt){const[lx,ly]=P(a0+(a1-a0)*.5),k=1+(o.loff??22)/r;label(cx+(lx-cx)*k,cy+(ly-cy)*k,txt,c,{parent:g});}
+return g;}
+function beam(x1,y1,x2,y2,o={}){const g=G(o);
+drawable(mk("path",{d:`M${x1},${y1} L${x2},${y2}`,stroke:col(o.c),"stroke-width":o.w||7,"stroke-linecap":"round",fill:"none"},g),Math.hypot(x2-x1,y2-y1));return g;}
+function poly(pts,o={}){const g=G(o);
+mk("path",{d:"M"+pts.map(p=>p.join(",")).join(" L")+(o.close?" Z":""),stroke:col(o.c),"stroke-width":o.w||2,fill:o.fill||"none","fill-opacity":o.fillOpacity??.18,"stroke-linejoin":"round","stroke-dasharray":o.dash?"7 5":null},g);return g;}
+function rect(x,y,w,h,o={}){const g=G(o);mk("rect",{x,y,width:w,height:h,rx:o.rx||3,fill:o.fill||"var(--card)",stroke:col(o.c),"stroke-width":o.w||2,"fill-opacity":o.fillOpacity??1},g);return g;}
+function circle(cx,cy,r,o={}){const g=G(o);mk("circle",{cx,cy,r,fill:o.fill||"none",stroke:col(o.c),"stroke-width":o.w||2,"stroke-dasharray":o.dash?"6 5":null},g);return g;}
+function point(x,y,txt,o={}){const g=G(o);mk("circle",{cx:x,cy:y,r:o.r||4,fill:col(o.c)},g);if(txt)label(x+(o.dx??12),y+(o.dy??-12),txt,o.c,{parent:g});return g;}
+function hatch(x,y,wid,o={}){const g=G(o),s=o.side==="top"?-1:1;
+mk("line",{x1:x-wid/2,y1:y,x2:x+wid/2,y2:y,stroke:"var(--struct)","stroke-width":2},g);
+for(let i=-wid/2+4;i<=wid/2;i+=8)mk("line",{x1:x+i,y1:y,x2:x+i-7,y2:y+8*s,stroke:"var(--hatch)","stroke-width":1.3},g);return g;}
+const boden=(x,y,w=60,o={})=>hatch(x,y,w,o);
+const decke=(x,y,w=60,o={})=>hatch(x,y,w,{...o,side:"top"});
+function gelenk(x,y,o={}){const g=G(o);mk("circle",{cx:x,cy:y,r:5,fill:"var(--card)",stroke:"var(--struct)","stroke-width":2},g);return g;}
+function festlager(x,y,o={}){const g=G(o);g.setAttribute("transform",`rotate(${-(o.rot||0)} ${x} ${y})`);
+mk("path",{d:`M${x},${y} L${x-14},${y+22} L${x+14},${y+22} Z`,fill:"var(--card)",stroke:"var(--struct)","stroke-width":2},g);
+hatch(x,y+22,40,{parent:g});gelenk(x,y,{parent:g});return g;}
+function loslager(x,y,o={}){const g=G(o);g.setAttribute("transform",`rotate(${-(o.rot||0)} ${x} ${y})`);
+mk("path",{d:`M${x},${y} L${x-14},${y+20} L${x+14},${y+20} Z`,fill:"var(--card)",stroke:"var(--struct)","stroke-width":2},g);
+mk("line",{x1:x-18,y1:y+25,x2:x+18,y2:y+25,stroke:"var(--struct)","stroke-width":2},g);
+hatch(x,y+31,40,{parent:g});gelenk(x,y,{parent:g});return g;}
+function einspannung(x,y,side="left",h=70,o={}){const g=G(o),v=side==="left"||side==="right",s=side==="left"||side==="top"?-1:1;
+if(v){mk("line",{x1:x,y1:y-h/2,x2:x,y2:y+h/2,stroke:"var(--struct)","stroke-width":3},g);
+for(let i=-h/2+4;i<=h/2;i+=8)mk("line",{x1:x,y1:y+i,x2:x+s*9,y2:y+i-7,stroke:"var(--hatch)","stroke-width":1.3},g);}
+else{mk("line",{x1:x-h/2,y1:y,x2:x+h/2,y2:y,stroke:"var(--struct)","stroke-width":3},g);
+for(let i=-h/2+4;i<=h/2;i+=8)mk("line",{x1:x+i,y1:y,x2:x+i-7,y2:y+s*9,stroke:"var(--hatch)","stroke-width":1.3},g);}
+return g;}
+const wand=einspannung;
+function pendelstab(x1,y1,x2,y2,o={}){const g=G(o);line(x1,y1,x2,y2,{parent:g,w:4,c:o.c});gelenk(x1,y1,{parent:g});gelenk(x2,y2,{parent:g});
+if(o.label)label((x1+x2)/2+(o.dx??14),(y1+y2)/2+(o.dy??0),o.label,o.c,{parent:g});return g;}
+function seil(x1,y1,x2,y2,o={}){const g=G(o);line(x1,y1,x2,y2,{parent:g,w:1.6,c:o.c});if(o.label)label((x1+x2)/2+(o.dx??12),(y1+y2)/2+(o.dy??0),o.label,o.c,{parent:g});return g;}
+function feder(x1,y1,x2,y2,o={}){const g=G(o),L=Math.hypot(x2-x1,y2-y1),ux=(x2-x1)/L,uy=(y2-y1)/L,n=o.n||8,w=o.w||9,e=Math.min(14,L*.15);
+const pts=[[x1,y1],[x1+ux*e,y1+uy*e]];
+for(let i=0;i<n;i++){const t=e+(L-2*e)*(i+.5)/n,s=i%2?-1:1;pts.push([x1+ux*t-uy*w*s,y1+uy*t+ux*w*s]);}
+pts.push([x2-ux*e,y2-uy*e],[x2,y2]);
+mk("path",{d:"M"+pts.map(p=>p.join(",")).join(" L"),fill:"none",stroke:col(o.c),"stroke-width":2,"stroke-linejoin":"round"},g);
+if(o.label)label((x1+x2)/2-uy*(w+14),(y1+y2)/2+ux*(w+14),o.label,o.c,{parent:g});return g;}
+function rolle(x,y,r=16,o={}){const g=G(o);mk("circle",{cx:x,cy:y,r,fill:"var(--card)",stroke:col(o.c),"stroke-width":2},g);mk("circle",{cx:x,cy:y,r:3,fill:col(o.c)},g);return g;}
+function ebene(x,y,len,deg,o={}){const g=G(o),c=Math.cos(rad(deg)),s=Math.sin(rad(deg)),X2=x+len*c,Y2=y-len*s;
+mk("path",{d:`M${x},${y} L${X2},${Y2} L${X2},${y} Z`,fill:"var(--struct)","fill-opacity":.07,stroke:"var(--struct)","stroke-width":2},g);
+hatch((x+X2)/2,y,len*c+10,{parent:g});
+if(o.winkel!==false)winkel(x,y,40,0,deg,null,"φ",{parent:g});
+g.auf=t=>[x+t*c,y-t*s];return g;}
+function quader(x,y,w,h,o={}){const g=G(o);g.setAttribute("transform",`rotate(${-(o.deg||0)} ${x} ${y})`);
+mk("rect",{x:x-w/2,y:y-h,width:w,height:h,rx:2,fill:"var(--struct)","fill-opacity":.1,stroke:col(o.c),"stroke-width":2},g);
+if(o.label)label(x,y-h/2,o.label,o.c,{parent:g,halo:false});return g;}
+function winkel(cx,cy,r,a1,a2,c,txt,o={}){const g=G(o),P=a=>[cx+r*Math.cos(rad(a)),cy-r*Math.sin(rad(a))],[sx,sy]=P(a1),[ex,ey]=P(a2);
+mk("path",{d:`M${sx},${sy} A${r},${r} 0 ${Math.abs(a2-a1)>180?1:0} ${a2>a1?0:1} ${ex},${ey}`,fill:"none",stroke:col(c||"var(--muted)"),"stroke-width":1.5},g);
+if(txt){const[lx,ly]=P((a1+a2)/2),k=1+(o.loff??16)/r;label(cx+(lx-cx)*k,cy+(ly-cy)*k,txt,c||"var(--muted)",{parent:g,size:15});}return g;}
+function streckenlast(x1,x2,y,h1,h2,c,txt,o={}){const g=G(o),n=o.n||Math.max(3,Math.round((x2-x1)/32));
+mk("path",{d:`M${x1},${y-h1} L${x2},${y-h2}`,stroke:col(c),"stroke-width":2,fill:"none"},g);
+for(let i=0;i<=n;i++){const x=x1+(x2-x1)*i/n,h=h1+(h2-h1)*i/n;if(h>6)arrow(x,y-h,x,y-2,c,null,{parent:g,w:1.8,head:8});}
+if(txt)label((x1+x2)/2,y-Math.max(h1,h2)-14,txt,c,{parent:g});return g;}
+function dim(x1,y1,x2,y2,txt,o={}){const g=G(o),off=o.off??24,a=Math.atan2(y2-y1,x2-x1),nx=-Math.sin(a)*off,ny=Math.cos(a)*off,A=[x1+nx,y1+ny],B=[x2+nx,y2+ny];
+mk("line",{x1,y1,x2:A[0],y2:A[1],stroke:"var(--muted)","stroke-width":1},g);mk("line",{x1:x2,y1:y2,x2:B[0],y2:B[1],stroke:"var(--muted)","stroke-width":1},g);
+arrow((A[0]+B[0])/2,(A[1]+B[1])/2,A[0],A[1],"var(--muted)",null,{parent:g,w:1,head:7});arrow((A[0]+B[0])/2,(A[1]+B[1])/2,B[0],B[1],"var(--muted)",null,{parent:g,w:1,head:7});
+const u=off>=0?1:-1;label((A[0]+B[0])/2-Math.sin(a)*u*12,(A[1]+B[1])/2+Math.cos(a)*u*12,txt,"var(--muted)",{parent:g,size:15});return g;}
+function axes(x,y,o={}){const g=G(o),L=o.len||40,D={right:[1,0],left:[-1,0],up:[0,-1],down:[0,1]};
+for(const[k,d]of Object.entries(o.dirs||{x:"right",y:"up"})){const[dx,dy]=D[d];arrow(x,y,x+dx*L,y+dy*L,"var(--muted)",null,{parent:g,w:1.6,head:9});label(x+dx*(L+11),y+dy*(L+11),k,"var(--muted)",{parent:g,size:15});}
+return g;}
+function schnitt(x,y1,y2,txt="Schnitt",o={}){const g=G(o);line(x,y1,x,y2,{parent:g,c:"var(--muted)",dash:true});text(x+4,y2+12,txt,{parent:g,anchor:"start",size:13});return g;}
+function fkb(x,y,w,h,txt,o={}){const g=G(o);mk("rect",{x,y,width:w,height:h,rx:10,fill:"none",stroke:"var(--accent)","stroke-width":1.5,"stroke-dasharray":"6 5"},g);if(txt)text(x+8,y+12,txt,{parent:g,anchor:"start",c:"var(--accent)",size:13});return g;}
+function fachwerk(kn,st,o={}){const g=G(o);
+for(const[a,b,n,c]of st){const[x1,y1]=kn[a],[x2,y2]=kn[b];line(x1,y1,x2,y2,{parent:g,w:3,c});if(n)label((x1+x2)/2+(o.ldx??0),(y1+y2)/2+(o.ldy??-10),n,c||"var(--muted)",{parent:g,size:14});}
+for(const[k,[x,y]]of Object.entries(kn)){gelenk(x,y,{parent:g});if(o.nr)text(x+(o.ndx??-12),y+(o.ndy??14),k,{parent:g,size:12});}
+return g;}
+function diagram(pts,y0,c,txt,o={}){const g=G(o);
+mk("line",{x1:pts[0][0],y1:y0,x2:pts[pts.length-1][0],y2:y0,stroke:"var(--struct)","stroke-width":1.5},g);
+mk("path",{d:`M${pts[0][0]},${y0} L`+pts.map(p=>p.join(",")).join(" L")+` L${pts[pts.length-1][0]},${y0} Z`,fill:col(c),"fill-opacity":.18,stroke:"none"},g);
+const p=mk("path",{d:"M"+pts.map(p=>p.join(",")).join(" L"),stroke:col(c),"stroke-width":2.5,fill:"none"},g);
+drawable(p,p.getTotalLength?p.getTotalLength()||600:600);
+if(txt)label(pts[0][0]-8,y0,txt,c,{parent:g,anchor:"end"});return g;}
+function traeger(T){
+const l=T.l,px=T.px||Math.min(48,480/l),x0=T.x0??60,y=T.y??110,X=m=>x0+px*m,L=T.lasten||[],lag=T.lager||"fest-los";
+const xA=T.xA??(lag==="einsp-rechts"?l:0),xB=T.xB??l;
+const qd=d=>s=>d.q+((d.q2??d.q)-d.q)*(s-d.von)/(d.bis-d.von);
+const dist=(d,b)=>{const lo=d.von,hi=Math.min(b,d.bis);if(hi<=lo)return[0,0];const q=qd(d),n=60,h=(hi-lo)/n;let R=0,Mx=0;
+for(let i=0;i<=n;i++){const s=lo+i*h,w=i===0||i===n?1:i%2?4:2;R+=w*q(s);Mx+=w*q(s)*s;}return[R*h/3,Mx*h/3];};
+const left=x=>{let V=0,Mx=0,Mc=0;for(const d of L){
+if(d.F!==undefined){if(d.x<=x){V+=d.F;Mx+=d.F*d.x;}}
+else if(d.q!==undefined){const[R,m]=dist(d,x);V+=R;Mx+=m;}
+else if(d.M!==undefined&&d.x<=x)Mc+=d.ccw===false?-d.M:d.M;}
+return{V,Mx,Mc};};
+const t=left(1e9),r={};
+if(lag==="fest-los"){r.B=(t.Mx-xA*t.V-t.Mc)/(xB-xA);r.A=t.V-r.B;r.ME=0;}
+else{r.A=t.V;r.B=0;r.ME=t.Mx-xA*t.V-t.Mc;}
+const sup=lag==="fest-los"?[[xA,r.A],[xB,r.B]]:[[xA,r.A]];
+const Q=x=>{let v=-left(x).V;for(const[s,F]of sup)if(s<=x)v+=F;return v;};
+const M=x=>{const a=left(x);let m=-(x*a.V-a.Mx)-a.Mc;for(const[s,F]of sup)if(s<=x)m+=F*(x-s);if(lag==="einsp-links")m-=r.ME;return m;};
+const keys=new Set([0,l,xA,xB]);for(const d of L){if(d.x!==undefined)keys.add(d.x);if(d.von!==undefined){keys.add(d.von);keys.add(d.bis);}}
+const K=[...keys].filter(k=>k>=0&&k<=l).sort((a,b)=>a-b),S=[];
+for(let i=0;i<=400;i++)S.push(l*i/400);for(const k of K)S.push(Math.max(0,k-1e-7),Math.min(l,k+1e-7));S.sort((a,b)=>a-b);
+let Mmax=0,xMmax=0;for(const s of S){const m=M(s);if(Math.abs(m)>Math.abs(Mmax)+1e-9){Mmax=m;xMmax=s;}}
+const res={X,px,y,l,A:r.A,B:r.B,ME:r.ME,Q,M,Mmax,xMmax:Math.round(xMmax*1e4)/1e4,keys:K};
+res.zeichnen=(o={})=>{const f=BUILD.from,to=BUILD.to;beam(X(0),y,X(l),y,{id:"balken"});
+if(o.lagerBis!==undefined)at(f,o.lagerBis);
+if(lag==="fest-los"){festlager(X(xA),y);loslager(X(xB),y);}else einspannung(X(xA),y,lag==="einsp-links"?"left":"right");
+at(f,to);
+L.forEach((d,i)=>{const c=d.c||"D",id=d.id||"L"+(i+1);
+if(d.F!==undefined)force(X(d.x),y-4,d.F>=0?-90:90,o.flen||60,c,d.name||null,{id,loff:-16});
+else if(d.q!==undefined)streckenlast(X(d.von),X(d.bis),y-4,34,34*(d.q2??d.q)/d.q,c,d.name||null,{id});
+else if(d.M!==undefined)moment(X(d.x),y,20,d.ccw!==false,c,d.name||null,{id,loff:14});});
+return res;};
+res.reaktionen=(o={})=>{const n=o.namen||["F_{Az}","F_{Bz}","M_E"];
+force(X(xA)+(lag==="einsp-links"?16:lag==="einsp-rechts"?-16:0),y+4,90,o.len||58,"A",n[0],{id:"RA",loff:22});
+if(lag==="fest-los"){force(X(xB),y+4,90,o.len||58,"B",n[1],{id:"RB",loff:22});if(o.horizontal!==false)force(X(xA)-4,y,0,40,"F","F_{Ax}",{id:"RAx",loff:16});}
+else moment(X(xA),y,26,r.ME>=0,"E",n[2],{id:"RM",start:lag==="einsp-links"?110:290,span:200});
+return res;};
+const verlauf=(f,y0,h,c,name,o)=>{const g=group(o.id);let mx=0;for(const s of S)mx=Math.max(mx,Math.abs(f(s)));
+const sc=mx>0?h/mx:1,sg=o.unten?1:-1;diagram(S.map(s=>[X(s),y0+sg*f(s)*sc]),y0,c,name,{parent:g});
+const marks=[...new Set([...K,...(name.startsWith("M")&&o.extrem!==false?[res.xMmax]:[])])].sort((a,b)=>a-b);let prev=null;
+for(const k of marks)for(const e of[-1e-7,1e-7]){const s=Math.min(l,Math.max(0,k+e)),v=f(s),key=fmt(v,o.d??1);
+if(Math.abs(v)<1e-6||key===prev)continue;prev=key;
+const jump=Math.abs(f(Math.max(0,k-1e-7))-f(Math.min(l,k+1e-7)))>1e-6;
+text(X(s)+(jump?(e<0?-14:14):0),y0+sg*v*sc+(sg*v>0?13:-11),fmt(v,o.d??1),{parent:g,c,size:13,bold:k===res.xMmax&&name.startsWith("M")});}
+return g;};
+res.qVerlauf=(y0,o={})=>{verlauf(Q,y0,o.h||40,o.c||"C",o.name||"Q_z",{id:"Q",...o});return res;};
+res.mVerlauf=(y0,o={})=>{verlauf(M,y0,o.h||60,o.c||"E",o.name||"M_y",{id:"M",unten:true,...o});return res;};
+res.masse=(o={})=>{let off=o.off??44;for(const k of K.filter(k=>k>0)){dim(X(0),y,X(k),y,fmt(k,o.d??(k%1?1:0))+" m",{off});off+=o.step??20;}return res;};
+return res;}
+function ansicht3d(o={}){
+const V={x:o.x??300,y:o.y??200,s:o.s??60,yaw:o.yaw??55,pitch:o.pitch??25,up:o.up||"z"};const HOME=[V.yaw,V.pitch];
+const Z0=o.zentrum||[0,0,0],conv=q=>{const p=[q[0]-Z0[0],q[1]-Z0[1],q[2]-Z0[2]];return V.up==="y"?[p[0],-p[2],p[1]]:p;};
+V.p=p=>{const[x,y,z]=conv(p),c=Math.cos(rad(V.yaw)),s=Math.sin(rad(V.yaw)),X=y*s-x*c,Y=x*s+y*c,cp=Math.cos(rad(V.pitch)),sp=Math.sin(rad(V.pitch));
+return[V.x+V.s*X,V.y-V.s*(z*cp-Y*sp),Y*cp+z*sp];};
+const add=(f,id)=>{const g=group(id);UPD.push(()=>{while(g.firstChild)g.removeChild(g.firstChild);f(g);});UPD[UPD.length-1]();return g;};
+V.linie=(a,b,q={})=>add(g=>{const[A,B]=[V.p(a),V.p(b)];line(A[0],A[1],B[0],B[1],{parent:g,c:q.c,w:q.w,dash:q.dash});},q.id);
+V.pfeil=(a,b,c,txt,q={})=>add(g=>{const[A,B]=[V.p(a),V.p(b)];if(Math.hypot(B[0]-A[0],B[1]-A[1])>4)arrow(A[0],A[1],B[0],B[1],c,txt,{...q,parent:g,id:undefined});else if(txt)label(B[0]+12,B[1]-12,txt,c,{parent:g});},q.id);
+V.kraft=(p,v,c,txt,q={})=>q.mode==="tail"?V.pfeil(p,[p[0]+v[0],p[1]+v[1],p[2]+v[2]],c,txt,q):V.pfeil([p[0]-v[0],p[1]-v[1],p[2]-v[2]],p,c,txt,q);
+V.moment=(p,v,c,txt,q={})=>V.pfeil(p,[p[0]+v[0],p[1]+v[1],p[2]+v[2]],c,txt,{...q,double:true});
+V.punkt=(p,txt,q={})=>add(g=>{const P=V.p(p);point(P[0],P[1],txt,{...q,parent:g,id:undefined});},q.id);
+V.text=(p,txt,q={})=>add(g=>{const P=V.p(p);label(P[0]+(q.dx||0),P[1]+(q.dy||0),txt,q.c||"var(--muted)",{parent:g,size:q.size||15});},q.id);
+V.flaeche=(pts,q={})=>add(g=>{poly(pts.map(p=>V.p(p).slice(0,2)),{parent:g,close:true,c:q.c,fill:q.fill||col(q.c)||"var(--struct)",fillOpacity:q.fillOpacity??.14,dash:q.dash});},q.id);
+V.achsen=(L=1.5,q={})=>add(g=>{const n=q.namen||["x","y","z"];[[L,0,0],[0,L,0],[0,0,L]].forEach((e,i)=>{const A=V.p(q.o||[0,0,0]),B=V.p([e[0]+(q.o?.[0]||0),e[1]+(q.o?.[1]||0),e[2]+(q.o?.[2]||0)]);
+arrow(A[0],A[1],B[0],B[1],"var(--muted)",null,{parent:g,w:1.6,head:9});const d=Math.hypot(B[0]-A[0],B[1]-A[1])||1;label(B[0]+(B[0]-A[0])/d*12,B[1]+(B[1]-A[1])/d*12,n[i],"var(--muted)",{parent:g,size:15});});},q.id);
+V.quader=(p0,d,q={})=>add(g=>{const[x,y,z]=p0,[a,b,c]=d,P=(i,j,k)=>[x+i*a,y+j*b,z+k*c];
+const F=[[P(0,0,0),P(1,0,0),P(1,1,0),P(0,1,0)],[P(0,0,1),P(1,0,1),P(1,1,1),P(0,1,1)],[P(0,0,0),P(1,0,0),P(1,0,1),P(0,0,1)],[P(0,1,0),P(1,1,0),P(1,1,1),P(0,1,1)],[P(0,0,0),P(0,1,0),P(0,1,1),P(0,0,1)],[P(1,0,0),P(1,1,0),P(1,1,1),P(1,0,1)]]
+.map(f=>{const pr=f.map(V.p);return{pr,depth:pr.reduce((s,p)=>s+p[2],0)/4};}).sort((u,v)=>u.depth-v.depth);
+for(const f of F)poly(f.pr.map(p=>p.slice(0,2)),{parent:g,close:true,c:q.c,fill:q.fill||col(q.c),fillOpacity:q.fillOpacity??.12,w:1.5});},q.id);
+V.bogen=(m,r,n1,n2,a1,a2,c,txt,q={})=>add(g=>{const pts=[];for(let i=0;i<=24;i++){const t=rad(a1+(a2-a1)*i/24);pts.push(V.p([0,1,2].map(k=>m[k]+r*(Math.cos(t)*n1[k]+Math.sin(t)*n2[k]))).slice(0,2));}
+poly(pts,{parent:g,c,w:q.w||2});if(txt){const P=pts[12];label(P[0]+(q.dx||0),P[1]+(q.dy||-12),txt,c,{parent:g});}},q.id);
+$("hint")?.classList.remove("hidden");svg.classList.add("dreh");
+const redraw=()=>{NODRAW=true;UPD.forEach(f=>f());NODRAW=false;};
+const ANS={vorne:[180,0],hinten:[0,0],rechts:[90,0],links:[-90,0],oben:[V.yaw,90],unten:[V.yaw,-90]};
+let anim=null;
+V.gehe=(z,ms=450)=>{let[ty,tp]=Array.isArray(z)?z:z==="home"||z==="iso"?HOME:ANS[z]||HOME;
+if(z==="oben"||z==="unten")ty=Math.round(V.yaw/90)*90;
+const y0=V.yaw,p0=V.pitch,dy=((ty-y0)%360+540)%360-180,t0=performance.now();cancelAnimationFrame(anim);
+const step=t=>{const k=Math.min(1,(t-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;V.yaw=y0+dy*e;V.pitch=p0+(tp-p0)*e;redraw();if(k<1)anim=requestAnimationFrame(step);};
+anim=requestAnimationFrame(step);};
+const vb=svg.viewBox.baseVal,CX=(vb&&vb.width?vb.width:600)-48,CY=46,CS=24,vc=mk("g",{class:"vc"});
+const cubeP=p=>{const c=Math.cos(rad(V.yaw)),s=Math.sin(rad(V.yaw)),cp=Math.cos(rad(V.pitch)),sp=Math.sin(rad(V.pitch)),X=p[1]*s-p[0]*c,Y=p[0]*s+p[1]*c;return[CX+CS*X,CY-CS*(p[2]*cp-Y*sp),Y*cp+p[2]*sp];};
+const FACES=[["oben",[0,0,1],"Oben"],["unten",[0,0,-1],"Unten"],["vorne",[0,-1,0],"Vorne"],["hinten",[0,1,0],"Hinten"],["rechts",[1,0,0],"Rechts"],["links",[-1,0,0],"Links"]];
+const drawCube=()=>{while(vc.firstChild)vc.removeChild(vc.firstChild);
+const d=[Math.sin(rad(V.yaw))*Math.cos(rad(V.pitch)),Math.cos(rad(V.yaw))*Math.cos(rad(V.pitch)),Math.sin(rad(V.pitch))];
+const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+for(const[name,n,txt]of FACES){if(dot(n,d)<=.02)continue;
+const i=n.findIndex(v=>v!==0),u=[0,1,2].filter(k=>k!==i),pts=[[-1,-1],[1,-1],[1,1],[-1,1]].map(([a,b])=>{const p=[0,0,0];p[i]=n[i];p[u[0]]=a;p[u[1]]=b;return cubeP(p);});
+const f=mk("path",{d:"M"+pts.map(q=>q[0]+","+q[1]).join(" L")+" Z",class:"vc-f"},vc);f.addEventListener("click",()=>V.gehe(name));
+const m=cubeP(n);if(dot(n,d)>.35){const t=mk("text",{x:m[0],y:m[1],class:"vc-t","text-anchor":"middle","dominant-baseline":"middle"},vc);t.textContent=txt;}}
+if(FACES.filter(([,n])=>dot(n,d)>.02).length===1)for(const[name,n,txt]of FACES){if(Math.abs(dot(n,d))>.05)continue;
+const P=cubeP(n.map(v=>v*1.75)),ax=P[0]-CX,ay=P[1]-CY,L=Math.hypot(ax,ay)||1,ux=ax/L,uy=ay/L,b=[P[0]-ux*6,P[1]-uy*6];
+const t=mk("path",{d:`M${P[0]+ux*4},${P[1]+uy*4} L${b[0]-uy*6},${b[1]+ux*6} L${b[0]+uy*6},${b[1]-ux*6} Z`,class:"vc-c"},vc);
+mk("title",{},t).textContent=txt;t.addEventListener("click",()=>V.gehe(name));}
+for(const sx of[-1,1])for(const sy of[-1,1])for(const sz of[-1,1]){const c=[sx,sy,sz];if(dot(c,d)<=.3)continue;const P=cubeP(c);
+const k=mk("circle",{cx:P[0],cy:P[1],r:4.5,class:"vc-c"},vc);
+k.addEventListener("click",()=>{const yy=Math.atan2(sx,sy)*180/Math.PI;V.gehe([yy,sz*35.26]);});}
+const h=mk("text",{x:CX,y:CY+CS*2.05+4,class:"vc-h","text-anchor":"middle"},vc);h.textContent="⌂ Home";h.addEventListener("click",()=>V.gehe("home"));};
+vc.addEventListener("pointerdown",e=>e.stopPropagation());
+UPD.push(drawCube);drawCube();setTimeout(()=>svg.appendChild(vc),0);
+let drag=null;
+svg.addEventListener("pointerdown",e=>{cancelAnimationFrame(anim);drag=[e.clientX,e.clientY,V.yaw,V.pitch];svg.setPointerCapture(e.pointerId);});
+svg.addEventListener("pointermove",e=>{if(!drag)return;V.yaw=drag[2]+(e.clientX-drag[0])*.5;V.pitch=Math.max(-90,Math.min(90,drag[3]+(e.clientY-drag[1])*.4));redraw();});
+svg.addEventListener("pointerup",()=>drag=null);
+VIEW3D=V;
+return V;}
+const WORT={weiter:"Weiter",fertig:"Fertig",play:"Abspielen",pause:"Pause"};
+let cur=0,timer=null;const revealed=new Set();
+function setMacroColors(){const cs=getComputedStyle(document.documentElement);for(const k of"ABCDEF")KM["\\c"+k]="\\textcolor{#"+cs.getPropertyValue("--c"+k).trim()+"}{#1}";}
+function renderMath(el){if(!el)return;
+const plain=t=>t.replace(/\\c[A-F]|\\(text|mathrm|textstyle|tfrac|frac)/g,"").replace(/\\[,;!:]/g," ").replace(/\\cdot/g,"·").replace(/[{}]/g,"").replace(/\\/g,"");
+el.querySelectorAll("[data-tex]").forEach(n=>{const t=n.dataset.tex;
+if(!window.katex){n.textContent=plain(t);return;}
+try{katex.render(t,n,{displayMode:n.dataset.display==="1",throwOnError:false,macros:{...KM}});}catch(e){n.textContent=plain(t);}});}
+function texify(h){return h.replace(/\$\$([\s\S]+?)\$\$/g,(m,t)=>`<div data-tex="${t.replace(/"/g,"&quot;")}" data-display="1"></div>`).replace(/\$([^$]+?)\$/g,(m,t)=>`<span data-tex="${t.replace(/"/g,"&quot;")}"></span>`);}
+function fitFormula(){const f=$("formula");f.style.fontSize="";let k=1;while(f.scrollWidth>f.clientWidth+1&&k>.6){k-=.05;f.style.fontSize=k+"em";}}
+function show(i){cur=Math.max(0,Math.min(STEPS.length-1,i));const S=STEPS[cur],hl=new Set(S.hl||[]);
+for(const e of ELS){const vis=cur>=e.from&&cur<=e.to,was=e.node.classList.contains("on");
+e.node.classList.toggle("on",vis);e.node.classList.toggle("off",!vis);
+e.node.classList.toggle("dim",vis&&S.dim===true&&!(e.id&&hl.has(e.id)));e.node.classList.toggle("hl",vis&&!!e.id&&hl.has(e.id));
+if(vis&&!was&&e.from===cur){e.node.classList.remove("draw");void e.node.offsetWidth;e.node.classList.add("draw");}
+if(vis&&e.id&&hl.has(e.id)){e.node.classList.remove("pulse");void e.node.offsetWidth;e.node.classList.add("pulse");}}
+if(VIEW3D&&S.view)VIEW3D.gehe(S.view);$("stitle").textContent=S.title||"";$("count").textContent=`Schritt ${cur+1} / ${STEPS.length}`;$("text").innerHTML=texify(S.text||"");
+const hid=S.ask&&!revealed.has(cur);$("ask").classList.toggle("hidden",!S.ask);$("asktext").innerHTML=S.ask?texify(" "+S.ask):"";$("reveal").classList.toggle("hidden",!hid);
+$("formula").innerHTML=hid?"":(S.tex?`<div data-tex="${S.tex.replace(/"/g,"&quot;")}" data-display="1"></div>`:"");
+["text","ask","formula"].forEach(k=>renderMath($(k)));fitFormula();
+$("prev").disabled=$("first").disabled=cur===0;$("next").textContent=cur===STEPS.length-1?WORT.fertig:WORT.weiter;$("next").disabled=cur===STEPS.length-1;
+[...$("dots").children].forEach((d,k)=>d.className=k===cur?"now":k<cur?"done":"");
+$("praxis").classList.toggle("hidden",!(PRAXIS&&(PRAXIS.always||cur===STEPS.length-1)));}
+function stop(){clearInterval(timer);timer=null;$("play").textContent=WORT.play;}
+function play(){if(timer){stop();return;}if(cur===STEPS.length-1)show(0);$("play").textContent=WORT.pause;
+timer=setInterval(()=>{if(STEPS[cur].ask&&!revealed.has(cur)){stop();return;}if(cur>=STEPS.length-1)stop();else show(cur+1);},CONFIG.autoplayMs||4500);}
+function init(){setMacroColors();
+if($("title")){document.title=CONFIG.title;$("title").textContent=CONFIG.title;$("subtitle").innerHTML=texify(CONFIG.subtitle||"");renderMath($("subtitle"));
+$("tags").innerHTML=(CONFIG.tags||[]).map(t=>`<span class="tag">${t}</span>`).join("");}
+$("legend").innerHTML=(LEGEND||[]).map(l=>`<span style="--c:${col(l.c)}">${l.label}</span>`).join("");
+$("dots").innerHTML=STEPS.map((_,k)=>`<i title="Schritt ${k+1}" data-k="${k}"></i>`).join("");
+$("dots").onclick=e=>{if(e.target.dataset.k){stop();show(+e.target.dataset.k);}};
+if(PRAXIS){$("ptitle").textContent=PRAXIS.title;$("ptext").innerHTML=texify(PRAXIS.text);renderMath($("ptext"));}
+$("next").onclick=()=>{stop();show(cur+1);};$("prev").onclick=()=>{stop();show(cur-1);};$("first").onclick=()=>{stop();show(0);};
+$("play").onclick=play;$("reveal").onclick=()=>{revealed.add(cur);show(cur);};
+addEventListener("keydown",e=>{if(e.key==="ArrowRight"){stop();show(cur+1);}else if(e.key==="ArrowLeft"){stop();show(cur-1);}else if(e.key===" "){e.preventDefault();play();}});
+addEventListener("resize",fitFormula);show(0);}
+function boot(){try{build();}catch(e){$("text").textContent="Fehler in build(): "+e.message;throw e;}
+if(window.katex)init();else{let n=0;const t=setInterval(()=>{if(window.katex||++n>40){clearInterval(t);init();}},50);}}
+(function warte(n=0){if(typeof build==="function"&&typeof STEPS!=="undefined"&&typeof PRAXIS!=="undefined"&&document.readyState!=="loading"){window.M1T_OK=true;boot();}else if(n<400)setTimeout(()=>warte(n+1),25);})();

@@ -1,0 +1,5 @@
+# Keine Unterlagen hochladen
+skill/mechanik1tutor/references/unterlagen/*
+!skill/mechanik1tutor/references/unterlagen/README.md
+*.pdf
+__pycache__/

@@ -1,0 +1,35 @@
+<div class="wrap">
+  <header>
+    <div id="tags"></div>
+    <h1 id="title"></h1>
+    <p id="subtitle"></p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <svg id="stage" viewBox="0 0 600 380" role="img" aria-label="Skizze"></svg>
+      <div class="legend" id="legend"></div>
+      <div class="hint hidden" id="hint">Skizze mit Maus oder Finger ziehen, um sie zu drehen.</div>
+    </div>
+    <div class="card">
+      <div class="stephead"><h2 id="stitle"></h2><span class="count" id="count"></span></div>
+      <div id="text"></div>
+      <div class="ask hidden" id="ask"><b>Probier's zuerst selbst</b><span id="asktext"></span></div>
+      <button id="reveal" class="hidden">Lösung zeigen</button>
+      <div id="formula"></div>
+      <div class="controls">
+        <button id="first" title="Zum Anfang">Anfang</button>
+        <button id="prev" title="Zurück (←)">Zurück</button>
+        <button id="next" class="primary" title="Weiter (→)">Weiter</button>
+        <button id="play" title="Automatisch abspielen (Leertaste)">Abspielen</button>
+        <div class="dots" id="dots"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card praxis hidden" id="praxis">
+    <div class="k">Praxisbeispiel</div>
+    <h3 id="ptitle"></h3>
+    <div id="ptext"></div>
+  </div>
+</div>

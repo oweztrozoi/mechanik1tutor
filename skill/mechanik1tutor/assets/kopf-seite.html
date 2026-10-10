@@ -377,4 +377,5 @@ addEventListener("keydown",e=>{if(e.key==="ArrowRight"){stop();show(cur+1);}else
 addEventListener("resize",fitFormula);show(0);}
 function boot(){try{build();}catch(e){$("text").textContent="Fehler in build(): "+e.message;throw e;}
 if(window.katex)init();else{let n=0;const t=setInterval(()=>{if(window.katex||++n>40){clearInterval(t);init();}},50);}}
-(function warte(n=0){if(typeof build==="function"&&typeof STEPS!=="undefined"&&typeof PRAXIS!=="undefined"&&document.readyState!=="loading"){window.M1T_OK=true;boot();}else if(n<400)setTimeout(()=>warte(n+1),25);})();
+(function warte(n=0){let ok=false;try{ok=typeof build==="function"&&typeof STEPS!=="undefined"&&typeof PRAXIS!=="undefined";}catch(e){}
+if(ok&&document.readyState!=="loading"){window.M1T_OK=true;boot();}else if(n<400)setTimeout(()=>warte(n+1),25);})();

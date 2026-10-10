@@ -290,5 +290,6 @@ function init(){setMacroColors();
 function boot(){try{build();}catch(e){$("text").textContent="Fehler in build(): "+e.message;throw e;}
   if(window.katex)init();else{let n=0;const t=setInterval(()=>{if(window.katex||++n>40){clearInterval(t);init();}},50);}}
 /* Start, sobald der Inhalt (build, STEPS) geladen ist – funktioniert eingebettet und per CDN */
-(function warte(n=0){if(typeof build==="function"&&typeof STEPS!=="undefined"&&typeof PRAXIS!=="undefined"&&document.readyState!=="loading"){window.M1T_OK=true;boot();}else if(n<400)setTimeout(()=>warte(n+1),25);})();
+(function warte(n=0){let ok=false;try{ok=typeof build==="function"&&typeof STEPS!=="undefined"&&typeof PRAXIS!=="undefined";}catch(e){}/* eingebettet: STEPS ist bis zum Skriptende noch nicht initialisiert */
+  if(ok&&document.readyState!=="loading"){window.M1T_OK=true;boot();}else if(n<400)setTimeout(()=>warte(n+1),25);})();
 /* ===== INHALT ===== */
